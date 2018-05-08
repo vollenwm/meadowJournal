@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  navigationCategories = ['Rinder', 'Schafe'];
+  navigationCategories = ['Rinder', 'Schafe', 'Schweine'];
   
   /*  Create a Array with the categories of each Type 
       Usable Variables: categoryCow, categorySheep, categoryPig */
