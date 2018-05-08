@@ -1,20 +1,130 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!--Main Navigation-->
 
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark green">
+
+    <!-- Navbar brand -->
+    <logo>
+        <a class="navbar-brand" href="#">Weide Journal</a>
+    </logo>
+
+    <!-- Collapsible content -->
+    <links>
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link waves-light" mdbWavesEffect>Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li *ngFor="let categorie of navigationCategories" class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect>{{ categorie }}</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                    Basic dropdown
+                    <span class="caret"></span>
+                </a>
+                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+                    <div class="divider dropdown-divider"></div>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+                </div>
+            </li>
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form -->
+        <form class="form-inline waves-light" mdbWavesEffect>
+            <div class="md-form mt-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            </div>
+        </form>
+    </links>
+    <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+
+
+<main>
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div col="col">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Jahr
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">2018</a>
+                        <a class="dropdown-item" href="#">2019</a>
+                    </div>
+                </div>
+            </div>
+            <div col="col">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Monat
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Januar</a>
+                        <a class="dropdown-item" href="#">Februar</a>
+                        <a class="dropdown-item" href="#">März</a>
+                        <a class="dropdown-item" href="#">April</a>
+                        <a class="dropdown-item" href="#">Mai</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col mt-3" *ngFor="let dayOfMonthCard of testCalendar; let i = index">
+                <div class="card" *ngIf="i != 6; else todayCard">
+                    <div class="card-header">
+                        {{ dayOfMonthCard }}.
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="btn-group btn-group-toggle btn-bock" data-toggle="buttons">
+                            <label class="btn btn-success active px-3">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked> Stall
+                            </label>
+                            <label class="btn btn-success px-3">
+                                <input type="radio" name="options" id="option2" autocomplete="off"> Weide
+                            </label>
+                            <label class="btn btn-success px-3">
+                                <input type="radio" name="options" id="option3" autocomplete="off"> Auslauf
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #todayCard>
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            {{ dayOfMonthCard }}.
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="btn-group btn-group-toggle btn-bock" data-toggle="buttons">
+                                <label class="btn btn-success px-3 active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Stall
+                                </label>
+                                <label class="btn btn-success px-3">
+                                    <input type="radio" name="options" id="option2" autocomplete="off"> Weide
+                                </label>
+                                <label class="btn btn-success px-3">
+                                    <input type="radio" name="options" id="option3" autocomplete="off"> Auslauf
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</main>
